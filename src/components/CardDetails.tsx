@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import { cardDetail } from "../interfaces/cardDetails";
 import { FaMicrophone } from "react-icons/fa";
@@ -12,7 +12,7 @@ const CardDetails: React.FC = () => {
 
   const [details, setDetails] = useState<cardDetail | null>(null);
   const [flag, setFlag] = useState<boolean>(true);
-  const readMoreStyle = useRef<HTMLDivElement | undefined>();
+  // const readMoreStyle = useRef<HTMLDivElement | undefined>();
 
   const fetchApi = async () => {
     const data = await fetch(`https://pokeapi.co/api/v2/pokemon/${params.id}`);
@@ -24,14 +24,14 @@ const CardDetails: React.FC = () => {
     fetchApi();
   }, []);
 
-  const abc = () => {
-    if (flag) {
-      readMoreStyle.current.style.height = "100%";
-      readMoreStyle.current.style.maxHeight = "100%";
-    } else {
-      readMoreStyle.current.style.maxHeight = "9.25rem";
-    }
-  };
+  // const abc = () => {
+  //   if (flag) {
+  //     readMoreStyle.current.style.height = "100%";
+  //     readMoreStyle.current.style.maxHeight = "100%";
+  //   } else {
+  //     readMoreStyle.current.style.maxHeight = "9.25rem";
+  //   }
+  // };
 
   const playSound = () => {
     if (details?.cries?.latest) {
@@ -226,7 +226,7 @@ const CardDetails: React.FC = () => {
             <div className="relative mt-3 pb-7 md:pb-8 md:mt-5 ">
               <h3 className="ml-4 text-lg font-semibold">Moves : </h3>
               <div
-                ref={readMoreStyle}
+                // ref={readMoreStyle}
                 className=" max-h-[9.2rem] overflow-hidden p-2 md:p-3 text-sm md:text-base flex flex-wrap gap-2 md:gap-3 shadow-inner border md:border-2 rounded-l-lg rounded-tr-lg border-gray-400"
               >
                 {details.moves.map((item, index) => (
@@ -238,7 +238,7 @@ const CardDetails: React.FC = () => {
                   className="bg-gray-400 px-3 py-1 italic text-sm md:text-base rounded-b-lg absolute right-0 bottom-0"
                   onClick={() => {
                     setFlag(!flag);
-                    abc();
+                    // abc();
                   }}
                 >
                   {flag ? "Read More >" : "< Read Less"}
